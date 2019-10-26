@@ -4,8 +4,38 @@
 #include<string.h>
 #include <vector> 
 #include <iostream>
+#include <queue> 
 
 using namespace std;
+
+int alwaysT(vector<string> l){
+	int correct = 0;
+	for(int i = 0; i <l.size(); i++){
+		if(l[i] == "T")
+			correct++;
+	}
+	return correct;
+}
+
+int alwaysNT(vector<string> l){
+	int correct = 0;
+	for(int i = 0; i <l.size(); i++){
+		if(l[i] == "NT")
+			correct++;
+	}
+	return correct;
+}
+int bimodal(vector<string> l, int size){
+	int correct = 0;
+	queue <string>hist;
+	hist.push("T");
+	for(int i = 0; i< l.size(); i++){
+		if(l[i]==hist.front())
+			correct++;
+		hist.push(l[i]);
+	}
+	return correct;
+}
 
 int main(int argc, char *argv[]) {
 
@@ -29,36 +59,10 @@ int main(int argc, char *argv[]) {
 			behaves.push_back("NT");
     }
   }
-
+	cout << alwaysT(behaves) << behaves.size() << ";" << endl;
+	cout << alwaysNT(behaves) << endl;
   return 0;
 }
 
-int alwaysT(vector<string> l){
-	int correct = 0;
-	for(int i = 0; i <l.size(); i++){
-		if(l[i] == "T")
-			correct++;
-	}
-	return correct;
-}
 
-int alwaysNT(vector<string> l){
-	int correct = 0;
-	for(int i = 0; i <l.size(); i++){
-		if(l[i] == "NT")
-			correct++;
-	}
-	return correct;
-}
-int bimodal(vector<string> l){
-	int correct = 0;
-	string predict = "T";
-	for(int i = 0; i<l.size(); i++){
-		if(l[i] == predict)
-			correct++;
-		else
-			predict = l[i];
-	}
-	return correct;
-}
 
