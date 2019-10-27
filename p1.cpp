@@ -115,10 +115,11 @@ int tournament(vector<string> t, vector<long long> p){
   bool bCorrect = false;
   vector<string>hist;
   vector<string>hist1;
-  vector<int>selector = (2048, 0);
+  vector<int>selector;
   int global = 0;
   int mod = pow(2,gsize);                                                      
-  for(int i = 0; i<2048; i++){    //gshare                                              
+  for(int i = 0; i<2048; i++){    //gshare
+    selector.push_back(0);
     hist.push_back("TT");
     hist1.push_back("TT");
   }
@@ -159,14 +160,14 @@ int tournament(vector<string> t, vector<long long> p){
 	hist1[b] = "NTT";                                                
     }                                                                   
     if(t[i] == "NT"){                                                   
-      if(hist1[b] == "NTT";
+      if(hist1[b] == "NTT");
 	 hist1[b] = "NTNT";                                               
 	 if(hist1[b] == "TNT")                                              
 	   hist1[b] = "NTT";                                                
 	 if(hist1[b] == "TT")                                               
 	   hist1[b] = "TNT";                                                
-	 }                                                                    
-    }
+    }                                                                    
+  //updating selector
     if(selector[b]<2){
       if(gCorrect){
 	correct++;
@@ -189,8 +190,9 @@ int tournament(vector<string> t, vector<long long> p){
 	  selector[b]--;
       }
     }
-    return correct;
   }
+  return correct;
+}
 
 int main(int argc, char *argv[]) {
 
@@ -222,12 +224,13 @@ int main(int argc, char *argv[]) {
   }
   cout << behaves.size() << ";"<< endl;
   for(int i = 0; i<vect.size(); i++){                                       
-    cout << bimodal2(behaves, pc, vect[i]) << ", "<< beaves.size() << ";";                          
+    cout << bimodal2(behaves, pc, vect[i]) << ", "<< behaves.size() << ";";                          
   }                                                                          
   cout << endl;
   for(int i = 3; i<12; i++)
     cout << gshare(behaves, pc, i) <<", " << behaves.size() << ";";
-  cout<< tournament(behaves, pc) << ", " << behaves.size() << ";";
+  cout << endl;
+  cout<< tournament(behaves, pc) << ", " << behaves.size() << ";" << endl;
   return 0;
 }
 
