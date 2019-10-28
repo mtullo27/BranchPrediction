@@ -162,14 +162,12 @@ int tournament(vector<string> t, vector<long long> p){
     }                                                                   
     if(t[i] == "NT"){                                                   
       if(hist1[b] == "NTT");
-<<<<<<< HEAD
 	 			hist1[b] = "NTNT";                                               
 	 		if(hist1[b] == "TNT")                                              
 	   		hist1[b] = "NTT";                                                
 	 		if(hist1[b] == "TT")                                               
 	   		hist1[b] = "TNT";                                                
     }                                                                    
-<<<<<<< HEAD
     //updating selector
     if(selector[b]<2){
       if(gCorrect){
@@ -180,7 +178,6 @@ int tournament(vector<string> t, vector<long long> p){
       if(!gCorrect){
 				if(bCorrect)
 	  			selector[b]++;
-=======
 	 hist1[b] = "NTNT";                                               
 	 if(hist1[b] == "TNT")                                              
 	   hist1[b] = "NTT";                                                
@@ -197,12 +194,10 @@ int tournament(vector<string> t, vector<long long> p){
       if(!gCorrect){
 	if(bCorrect)
 	  selector[b]++;
->>>>>>> 33c79a042090c9678dfed9ec4ddd0627cf0ca396
       }
     }
     if(selector[b]>1){
       if(bCorrect){
-<<<<<<< HEAD
 				correct++;
 			if(!gCorrect)
 	  		selector[b] = 3;
@@ -213,9 +208,6 @@ int tournament(vector<string> t, vector<long long> p){
       }
     }
   }
-=======
->>>>>>> bcb96fe6f12e086b8da767c782ea2281d02d5f0a
-=======
 	correct++;
 	if(!gCorrect)
 	  selector[b] = 3;
@@ -225,7 +217,6 @@ int tournament(vector<string> t, vector<long long> p){
 	  selector[b]--;
       }
     }
->>>>>>> 33c79a042090c9678dfed9ec4ddd0627cf0ca396
   return correct;
 }
 vector <int> BTB(vector<long long>pc, vector<string> behave, vector<long long> target){
