@@ -84,22 +84,22 @@ int gshare(vector <string>t, vector<long long> p, int size){
     int j = (p[i]^global)%2048;
     if(t[i][0] == hist[j][0])
       correct++;
-		//updating preditcor state
+     //updating preditcor state
     if(t[i]=="T"){                                                        
       if(hist[j]=="TNT")                                                 
-				hist[j] = "TT";                                                  
+	hist[j] = "TT";                                                  
       if(hist[j]=="NTT")                                                 
-				hist[j] = "TNT";                                                 
+	hist[j] = "TNT";                                                 
       if(hist[j]=="NTNT")                                                
-				hist[j] = "NTT";                                                 
+	hist[j] = "NTT";                                                 
     }                                                                    
     if(t[i] == "NT"){                                                    
       if(hist[j] == "NTT")                                               
-				hist[j] = "NTNT";                                                
+	hist[j] = "NTNT";                                                
       if(hist[j] == "TNT")                                              
-				hist[j] = "NTT";
+	hist[j] = "NTT";
       if(hist[j] == "TT")                
-				hist[j] = "TNT";                                                
+	hist[j] = "TNT";                                                
     }  
     if(t[i] == "T")
       global=((global<<1)+1)%mod;
@@ -112,8 +112,8 @@ int tournament(vector<string> t, vector<long long> p){
   int correct = 0;
   int size = 2048;
   int gsize = 11;
-  bool gCorrect = false;
-  bool bCorrect = false;
+  bool gCorrect;
+  bool bCorrect;
   vector<string>hist;
   vector<string>hist1;
   vector<int>selector;
@@ -130,19 +130,19 @@ int tournament(vector<string> t, vector<long long> p){
       gCorrect = true;
     if(t[i]=="T"){                                                             
       if(hist[j]=="TNT")                                                 
-				hist[j] = "TT";                                                  
+	hist[j] = "TT";                                                  
       if(hist[j]=="NTT")                                                 
-				hist[j] = "TNT";                                                 
+	hist[j] = "TNT";                                                 
       if(hist[j]=="NTNT")                                                
-				hist[j] = "NTT";                                                 
+	hist[j] = "NTT";                                                 
     }              
     if(t[i] == "NT"){
       if(hist[j] == "NTT")                                               
-				hist[j] = "NTNT";                                                
+	hist[j] = "NTNT";                                                
       if(hist[j] == "TNT")                                               
-				hist[j] = "NTT";                                                 
+	hist[j] = "NTT";                                                 
       if(hist[j] == "TT")                                                
-				hist[j] = "TNT";                                                 
+	hist[j] = "TNT";                                                 
     }                                                                    
     if(t[i] == "T")                                                            
       global=((global<<1)+1)%mod;                                              
@@ -154,37 +154,21 @@ int tournament(vector<string> t, vector<long long> p){
       bCorrect = true;                                                      
     if(t[i]=="T"){                                                       
       if(hist1[b]=="TNT")                                                
-				hist1[b] = "TT";                                                 
+	hist1[b] = "TT";                                                 
       if(hist1[b]=="NTT")                                                
-				hist1[b] = "TNT";                                                
+	hist1[b] = "TNT";                                                
       if(hist1[b]=="NTNT")                                               
-				hist1[b] = "NTT";                                                
+	hist1[b] = "NTT";                                                
     }                                                                   
     if(t[i] == "NT"){                                                   
       if(hist1[b] == "NTT");
-	 			hist1[b] = "NTNT";                                               
-	 		if(hist1[b] == "TNT")                                              
-	   		hist1[b] = "NTT";                                                
-	 		if(hist1[b] == "TT")                                               
-	   		hist1[b] = "TNT";                                                
-    }                                                                    
-    //updating selector
-    if(selector[b]<2){
-      if(gCorrect){
-				correct++;
-				if(!bCorrect)
-	  			selector[b] = 0;
-      }
-      if(!gCorrect){
-				if(bCorrect)
-	  			selector[b]++;
 	 hist1[b] = "NTNT";                                               
-	 if(hist1[b] == "TNT")                                              
-	   hist1[b] = "NTT";                                                
-	 if(hist1[b] == "TT")                                               
-	   hist1[b] = "TNT";                                                
-    }  
-	  	  //updating selector
+      if(hist1[b] == "TNT")                                              
+	  hist1[b] = "NTT";                                                
+      if(hist1[b] == "TT")                                               
+	  hist1[b] = "TNT";                                                
+    }                                                                    
+//updating selector
     if(selector[b]<2){
       if(gCorrect){
 	correct++;
@@ -198,26 +182,16 @@ int tournament(vector<string> t, vector<long long> p){
     }
     if(selector[b]>1){
       if(bCorrect){
-				correct++;
-			if(!gCorrect)
-	  		selector[b] = 3;
-      }
-      if(!bCorrect){
-				if(gCorrect)
-	  			selector[b]--;
-      }
-    }
-  }
 	correct++;
 	if(!gCorrect)
-	  selector[b] = 3;
+	selector[b] = 3;
       }
       if(!bCorrect){
 	if(gCorrect)
-	  selector[b]--;
+	selector[b]--;
       }
     }
-}
+  }
   return correct;
 }
 vector <int> BTB(vector<long long>pc, vector<string> behave, vector<long long> target){
