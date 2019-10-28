@@ -8,7 +8,7 @@ $(proj).o: p1.cpp
 	g++ -c $(CFLAGS) p1.cpp -o predictors.o
 
 run: all
-	./$(proj) 
+	./$(proj) short_trace1.txt output.txt
 
 clean:
 	rm -rf *.o $(proj)

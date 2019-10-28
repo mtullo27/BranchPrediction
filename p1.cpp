@@ -56,19 +56,19 @@ int bimodal2(vector<string> t, vector<long long> p,  int size){
       correct++;
     if(t[i]=="T"){
       if(hist[j]=="TNT")
-	hist[j] = "TT";
+				hist[j] = "TT";
       if(hist[j]=="NTT")
-	hist[j] = "TNT";
+				hist[j] = "TNT";
       if(hist[j]=="NTNT")
-	hist[j] = "NTT";
+				hist[j] = "NTT";
     }
     if(t[i] == "NT"){
       if(hist[j] == "NTT")
-	hist[j] = "NTNT";
+				hist[j] = "NTNT";
       if(hist[j] == "TNT")
-	hist[j] = "NTT";
+				hist[j] = "NTT";
       if(hist[j] == "TT")
-	hist[j] = "TNT";
+				hist[j] = "TNT";
     }
   }
   return correct;
@@ -84,21 +84,22 @@ int gshare(vector <string>t, vector<long long> p, int size){
     int j = (p[i]^global)%2048;
     if(t[i][0] == hist[j][0])
       correct++;
+		//updating preditcor state
     if(t[i]=="T"){                                                        
       if(hist[j]=="TNT")                                                 
-	hist[j] = "TT";                                                  
+				hist[j] = "TT";                                                  
       if(hist[j]=="NTT")                                                 
-	hist[j] = "TNT";                                                 
+				hist[j] = "TNT";                                                 
       if(hist[j]=="NTNT")                                                
-	hist[j] = "NTT";                                                 
+				hist[j] = "NTT";                                                 
     }                                                                    
     if(t[i] == "NT"){                                                    
       if(hist[j] == "NTT")                                               
-	hist[j] = "NTNT";                                                
+				hist[j] = "NTNT";                                                
       if(hist[j] == "TNT")                                              
-	hist[j] = "NTT";
+				hist[j] = "NTT";
       if(hist[j] == "TT")                
-	hist[j] = "TNT";                                                
+				hist[j] = "TNT";                                                
     }  
     if(t[i] == "T")
       global=((global<<1)+1)%mod;
@@ -129,19 +130,19 @@ int tournament(vector<string> t, vector<long long> p){
       gCorrect = true;
     if(t[i]=="T"){                                                             
       if(hist[j]=="TNT")                                                 
-	hist[j] = "TT";                                                  
+				hist[j] = "TT";                                                  
       if(hist[j]=="NTT")                                                 
-	hist[j] = "TNT";                                                 
+				hist[j] = "TNT";                                                 
       if(hist[j]=="NTNT")                                                
-	hist[j] = "NTT";                                                 
+				hist[j] = "NTT";                                                 
     }              
     if(t[i] == "NT"){
       if(hist[j] == "NTT")                                               
-	hist[j] = "NTNT";                                                
+				hist[j] = "NTNT";                                                
       if(hist[j] == "TNT")                                               
-	hist[j] = "NTT";                                                 
+				hist[j] = "NTT";                                                 
       if(hist[j] == "TT")                                                
-	hist[j] = "TNT";                                                 
+				hist[j] = "TNT";                                                 
     }                                                                    
     if(t[i] == "T")                                                            
       global=((global<<1)+1)%mod;                                              
@@ -149,49 +150,80 @@ int tournament(vector<string> t, vector<long long> p){
       global = (global<<1)%mod;                                                
     //bimodal                                                                                 
     int b = p[i]%size;                                                   
-    if(hist1[b][0]==t[i][0])                                             
+    if(hist1[b].at(0)==t[i].at(0))                                             
       bCorrect = true;                                                      
     if(t[i]=="T"){                                                       
       if(hist1[b]=="TNT")                                                
-	hist1[b] = "TT";                                                 
+				hist1[b] = "TT";                                                 
       if(hist1[b]=="NTT")                                                
-	hist1[b] = "TNT";                                                
+				hist1[b] = "TNT";                                                
       if(hist1[b]=="NTNT")                                               
-	hist1[b] = "NTT";                                                
+				hist1[b] = "NTT";                                                
     }                                                                   
     if(t[i] == "NT"){                                                   
       if(hist1[b] == "NTT");
-	 hist1[b] = "NTNT";                                               
-	 if(hist1[b] == "TNT")                                              
-	   hist1[b] = "NTT";                                                
-	 if(hist1[b] == "TT")                                               
-	   hist1[b] = "TNT";                                                
+	 			hist1[b] = "NTNT";                                               
+	 		if(hist1[b] == "TNT")                                              
+	   		hist1[b] = "NTT";                                                
+	 		if(hist1[b] == "TT")                                               
+	   		hist1[b] = "TNT";                                                
     }                                                                    
-  //updating selector
+    //updating selector
     if(selector[b]<2){
       if(gCorrect){
-	correct++;
-	if(!bCorrect)
-	  selector[b] = 0;
+				correct++;
+				if(!bCorrect)
+	  			selector[b] = 0;
       }
       if(!gCorrect){
-	if(bCorrect)
-	  selector[b]++;
+				if(bCorrect)
+	  			selector[b]++;
       }
     }
     if(selector[b]>1){
       if(bCorrect){
-	correct++;
-	if(!gCorrect)
-	  selector[b] = 3;
+				correct++;
+			if(!gCorrect)
+	  		selector[b] = 3;
       }
       if(!bCorrect){
-	if(gCorrect)
-	  selector[b]--;
+				if(gCorrect)
+	  			selector[b]--;
       }
     }
   }
   return correct;
+}
+vector <int> BTB(vector<long long>pc, vector<string> behave, vector<long long> target){
+  vector <int> ret;
+  int numCorrect = 0;
+  int numAccess = 0;
+  int size = 512;
+  vector <string> prediction;
+  vector <vector<long long>> bTarget;
+  for(int i = 0; i<size; i++)
+    prediction.push_back("T");
+  for(int i = 0; i<128; i++)
+		//[0] is the address and [1] is the target
+    bTarget.push_back({0,0});
+  for(int i = 0; i<pc.size(); i++){
+    int index = pc[i]%size;
+    int bIndex = pc[i] %128;
+		if(prediction[index]=="T"){
+      numAccess++;
+      if(bTarget[bIndex][1] != target[i]||bTarget[bIndex][0] != pc[i]){
+				bTarget[bIndex][1] = target[i];
+				bTarget[bIndex][0] = pc[i];
+			}
+    	 else
+				numCorrect++;
+		}
+		if(!(prediction[index] == behave[i]))
+			prediction[index] = behave[i];
+  }
+  ret.push_back(numCorrect);
+  ret.push_back(numAccess);
+  return ret;
 }
 
 int main(int argc, char *argv[]) {
@@ -208,6 +240,7 @@ int main(int argc, char *argv[]) {
   // a string each time and then output them
   vector <string> behaves;
   vector <long long> pc;
+  vector <long long> targets; 
   while(fscanf(input, "%llx %10s %llx\n", &addr, behavior, &target) != EOF) {
     if(!strncmp(behavior, "T", 2)) {
       behaves.push_back("T");
@@ -215,22 +248,24 @@ int main(int argc, char *argv[]) {
       behaves.push_back("NT");
     }
     pc.push_back(addr);
+    targets.push_back(target);
   }
   vector<int> vect{16,32, 128, 256, 512, 1024, 2048};
-  cout << alwaysT(behaves) << ", " << behaves.size() << ";" << endl;
-  cout << alwaysNT(behaves) << ", " << behaves.size() << ";" << endl;
+  cout << alwaysT(behaves) << "," << behaves.size() << "; " << endl;
+  cout << alwaysNT(behaves) << "," << behaves.size() << "; " << endl;
   for(int i = 0; i<vect.size(); i++){
-    cout << bimodal(behaves, pc, vect[i]) << ", ";  
+    cout << bimodal(behaves, pc, vect[i]) << "," << behaves.size() << "; ";  
   }
-  cout << behaves.size() << ";"<< endl;
+  cout <<  endl;
   for(int i = 0; i<vect.size(); i++){                                       
-    cout << bimodal2(behaves, pc, vect[i]) << ", "<< behaves.size() << ";";                          
+    cout << bimodal2(behaves, pc, vect[i]) << ","<< behaves.size() << "; ";                          
   }                                                                          
   cout << endl;
   for(int i = 3; i<12; i++)
-    cout << gshare(behaves, pc, i) <<", " << behaves.size() << ";";
+    cout << gshare(behaves, pc, i) <<"," << behaves.size() << "; ";
   cout << endl;
-  cout<< tournament(behaves, pc) << ", " << behaves.size() << ";" << endl;
+  cout<< tournament(behaves, pc) << "," << behaves.size() << "; " << endl;
+  cout << BTB(pc, behaves, targets)[1] << "," << BTB(pc, behaves, targets)[0] << "; " <<endl;
   return 0;
 }
 
