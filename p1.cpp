@@ -217,6 +217,7 @@ int tournament(vector<string> t, vector<long long> p){
 	  selector[b]--;
       }
     }
+}
   return correct;
 }
 vector <int> BTB(vector<long long>pc, vector<string> behave, vector<long long> target){
