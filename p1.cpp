@@ -124,6 +124,29 @@ int tournament(vector<string> t, vector<long long> p){
     hist.push_back("TT");
     hist1.push_back("TT");
   }
+	  //updating selector
+    if(selector[b]<2){
+      if(gCorrect){
+	correct++;
+	if(!bCorrect)
+	  selector[b] = 0;
+      }
+      if(!gCorrect){
+	if(bCorrect)
+	  selector[b]++;
+      }
+    }
+    if(selector[b]>1){
+      if(bCorrect){
+	correct++;
+	if(!gCorrect)
+	  selector[b] = 3;
+      }
+      if(!bCorrect){
+	if(gCorrect)
+	  selector[b]--;
+      }
+    }
   for(int i = 0; i<t.size(); i++){                                             
     int j = (p[i]^global)%2048;                                                
     if(t[i][0] == hist[j][0])                                                  
@@ -168,6 +191,7 @@ int tournament(vector<string> t, vector<long long> p){
 	 		if(hist1[b] == "TT")                                               
 	   		hist1[b] = "TNT";                                                
     }                                                                    
+<<<<<<< HEAD
     //updating selector
     if(selector[b]<2){
       if(gCorrect){
@@ -192,6 +216,8 @@ int tournament(vector<string> t, vector<long long> p){
       }
     }
   }
+=======
+>>>>>>> bcb96fe6f12e086b8da767c782ea2281d02d5f0a
   return correct;
 }
 vector <int> BTB(vector<long long>pc, vector<string> behave, vector<long long> target){
